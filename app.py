@@ -15,17 +15,22 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        body {
-            background: linear-gradient(180deg, #eef5fc 0%, #fdfcff 55%, #ffffff 100%);
+        body, .stApp, .main, .block-container, .css-18e3th9, .css-k1vhr4, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"] {
+            background: linear-gradient(180deg, #eef5fc 0%, #f7fbff 35%, #ffffff 100%) !important;
         }
-        .stApp {
-            background: transparent;
+        .block-container {
+            box-shadow: none !important;
+            background-color: transparent !important;
+            padding-top: 1.5rem !important;
+            padding-bottom: 2rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
         }
         .stButton>button {
             background-color: #0b4f7e;
             color: white;
             border-radius: 10px;
-            padding: 0.65rem 1rem;
+            padding: 0.75rem 1rem;
             font-weight: 600;
             transition: background-color 0.25s ease;
         }
