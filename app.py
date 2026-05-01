@@ -15,8 +15,12 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        body, .stApp, .main, .block-container, .css-18e3th9, .css-k1vhr4, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"] {
-            background: linear-gradient(180deg, #eef5fc 0%, #f7fbff 35%, #ffffff 100%) !important;
+        body, .stApp, .main, .block-container, .css-18e3th9, .css-k1vhr4, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
+            background: linear-gradient(180deg, #eef5fc 0%, #f7fbff 30%, #ffffff 100%) !important;
+            color: #0f172a !important;
+        }
+        .element-container, .streamlit-expanderHeader, .stMarkdown, .stText, .css-1kyxreq {
+            color: #0f172a !important;
         }
         .block-container {
             box-shadow: none !important;
@@ -49,18 +53,18 @@ st.markdown(
             font-size: 0.95rem;
         }
         .metric-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: 18px;
             padding: 1.25rem;
             box-shadow: 0 12px 30px rgba(15, 70, 120, 0.08);
             border: 1px solid rgba(15, 70, 120, 0.08);
         }
         .section-card {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 20px;
-            padding: 1.25rem;
-            border: 1px solid rgba(15, 70, 120, 0.06);
-            box-shadow: 0 10px 28px rgba(15, 70, 120, 0.05);
+            background: rgba(248, 252, 255, 0.95);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(15, 70, 120, 0.1);
+            box-shadow: 0 18px 35px rgba(15, 70, 120, 0.08);
         }
         .section-title {
             margin-bottom: 0.25rem;
@@ -70,6 +74,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown("<div class='section-card'>", unsafe_allow_html=True)
 with st.container():
     bt1, bt2 = st.columns([3, 2])
     with bt1:
