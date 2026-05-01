@@ -15,12 +15,12 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        body, .stApp, .main, .block-container, .css-18e3th9, .css-k1vhr4, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
-            background: linear-gradient(180deg, #eef5fc 0%, #f7fbff 30%, #ffffff 100%) !important;
-            color: #0f172a !important;
+        body, .stApp, .main, .block-container, .css-18e3th9, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
+            background: #020812 !important;
+            color: #e2e8f0 !important;
         }
         .element-container, .streamlit-expanderHeader, .stMarkdown, .stText, .css-1kyxreq {
-            color: #0f172a !important;
+            color: #e2e8f0 !important;
         }
         .block-container {
             box-shadow: none !important;
@@ -30,44 +30,65 @@ st.markdown(
             padding-left: 2rem !important;
             padding-right: 2rem !important;
         }
+        [data-testid="stSidebar"] {
+            background: #071a33 !important;
+            color: #e2e8f0 !important;
+        }
+        [data-testid="stSidebar"] .css-1d391kg, [data-testid="stSidebar"] .css-1lcbmhc {
+            background: #071a33 !important;
+        }
         .stButton>button {
-            background-color: #0b4f7e;
+            background-color: #13418d;
             color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 0.75rem 1rem;
             font-weight: 600;
-            transition: background-color 0.25s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
         .stButton>button:hover {
-            background-color: #093959;
-            color: #ffffff;
+            background-color: #0f326c;
+            transform: translateY(-1px);
         }
-        .stAlert {
+        .stTextInput>div>input, .stNumberInput>div>input, .stSelectbox>div>div>div>div {
+            border-radius: 12px;
+            background: #0d1f3a !important;
+            color: #e2e8f0 !important;
+        }
+        .stSlider>div>div {
+            border-radius: 12px;
+        }
+        .stAlert, .stInfo, .stSuccess, .stWarning, .stError {
             border-radius: 16px;
         }
-        .footer {
-            text-align: center;
-            color: #5a6370;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            font-size: 0.95rem;
+        .metric-card, .section-card, .hero-card, .grid-card, .result-card, .form-card {
+            background: rgba(8, 22, 44, 0.95);
+            border: 1px solid rgba(56, 84, 126, 0.18);
+            border-radius: 24px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+            padding: 1.6rem;
         }
-        .metric-card {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 18px;
-            padding: 1.25rem;
-            box-shadow: 0 12px 30px rgba(15, 70, 120, 0.08);
-            border: 1px solid rgba(15, 70, 120, 0.08);
+        .hero-card {
+            padding: 2rem 2rem 1.5rem 2rem;
         }
         .section-card {
-            background: rgba(248, 252, 255, 0.95);
-            border-radius: 24px;
-            padding: 1.5rem;
-            border: 1px solid rgba(15, 70, 120, 0.1);
-            box-shadow: 0 18px 35px rgba(15, 70, 120, 0.08);
+            padding: 1.6rem;
         }
         .section-title {
             margin-bottom: 0.25rem;
+            color: #e2e8f0;
+            font-weight: 700;
+        }
+        .footer {
+            text-align: center;
+            color: #94a3b8;
+            padding: 1.5rem 0 0.5rem;
+            font-size: 0.95rem;
+        }
+        .stSidebar .css-1v0mbdj, .stSidebar .css-10trblm {
+            color: #f8fafc !important;
+        }
+        .stCheckbox>div, .stRadio>div {
+            color: #e2e8f0 !important;
         }
     </style>
     """,
