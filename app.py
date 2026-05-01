@@ -87,6 +87,7 @@ with st.container():
         st.metric("Prediction latency", "<1s")
         st.metric("Confidence score", "92%", delta="+4%")
 
+st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("---")
 
 st.sidebar.header("Choose your workflow")
