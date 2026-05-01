@@ -40,7 +40,7 @@ st.markdown(
         [data-testid="stSidebar"] {
             background: linear-gradient(180deg, #071a33 0%, #061825 100%) !important;
             color: #e2e8f0 !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
         }
         [data-testid="stSidebar"] .css-1d391kg, [data-testid="stSidebar"] .css-1lcbmhc {
             background: transparent !important;
@@ -51,103 +51,57 @@ st.markdown(
         .stButton>button {
             background-color: #1f4f92;
             color: white;
-            border-radius: 14px;
-            padding: 0.9rem 1.1rem;
+            border-radius: 16px;
+            padding: 1rem 1.15rem;
             font-weight: 700;
-            transition: background-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.02em;
+            transition: background-color 0.2s ease, transform 0.16s ease, box-shadow 0.2s ease;
         }
         .stButton>button:hover {
-            background-color: #1662bf;
+            background-color: #1772d1;
             transform: translateY(-1px);
-            box-shadow: 0 14px 30px rgba(22, 98, 191, 0.24);
+            box-shadow: 0 16px 32px rgba(23, 114, 209, 0.22);
         }
         .stTextInput>div>input, .stNumberInput>div>input, .stSelectbox>div>div>div>div {
-            border-radius: 14px;
+            border-radius: 16px;
             background: #071b38 !important;
             color: #e2e8f0 !important;
             border: 1px solid rgba(148, 163, 184, 0.18) !important;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
         }
-        .stSlider>div>div {
-            border-radius: 12px;
-        }
-        .stAlert, .stInfo, .stSuccess, .stWarning, .stError {
-            border-radius: 18px;
-        }
+        .stSlider>div>div { border-radius: 16px; }
+        .stAlert, .stInfo, .stSuccess, .stWarning, .stError { border-radius: 18px; }
         .metric-card, .section-card, .hero-card, .grid-card, .result-card, .form-card {
-            background: rgba(9, 18, 37, 0.95);
-            border: 1px solid rgba(56, 84, 126, 0.18);
-            border-radius: 24px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.40);
-            padding: 1.6rem;
+            background: rgba(9, 18, 37, 0.96);
+            border: 1px solid rgba(56, 84, 126, 0.22);
+            border-radius: 28px;
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.30);
+            padding: 1.8rem;
+            transition: transform 0.35s ease, border-color 0.35s ease;
+        }
+        .metric-card:hover, .section-card:hover, .hero-card:hover, .grid-card:hover, .result-card:hover, .form-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56, 84, 126, 0.30);
         }
         .hero-card {
-            padding: 2rem 2rem 1.5rem 2rem;
+            padding: 2.25rem 2.25rem 1.75rem 2.25rem;
         }
-        .section-card {
-            padding: 1.7rem;
-        }
-        .section-title {
-            margin-bottom: 0.4rem;
-            color: #e2e8f0;
-            font-weight: 700;
-        }
-        .footer {
-            text-align: center;
-            color: #94a3b8;
-            padding: 1.5rem 0 0.5rem;
-            font-size: 0.95rem;
-        }
-        .hero-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: rgba(20, 57, 103, 0.95);
-            color: #cbd5e1;
-            padding: 0.55rem 0.85rem;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(148, 163, 184, 0.14);
-        }
-        .tone-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: #94a3b8;
-            padding: 0.45rem 0.75rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.12);
-            margin-bottom: 1rem;
-        }
-        .fade-in-up {
-            animation: fadeInUp 0.85s ease both;
-        }
-        .slide-in-left {
-            animation: slideInLeft 0.75s ease both;
-        }
-        .slide-in-right {
-            animation: slideInRight 0.75s ease both;
-        }
-        .glow-button button {
-            box-shadow: 0 0 0 0 rgba(22, 98, 191, 0.25);
-            transition: box-shadow 0.35s ease, transform 0.18s ease;
-        }
-        .glow-button button:hover {
-            box-shadow: 0 0 24px rgba(22, 98, 191, 0.20);
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-24px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(24px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        .section-card { padding: 1.8rem; }
+        .section-title { margin-bottom: 0.4rem; color: #e2e8f0; font-weight: 700; }
+        .footer { text-align: center; color: #94a3b8; padding: 1.6rem 0 0.5rem; font-size: 0.95rem; }
+        .hero-pill { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(20, 57, 103, 0.95); color: #cbd5e1; padding: 0.55rem 0.85rem; border-radius: 999px; font-size: 0.9rem; margin-bottom: 1rem; border: 1px solid rgba(148, 163, 184, 0.14); }
+        .tone-chip { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(255, 255, 255, 0.05); color: #94a3b8; padding: 0.45rem 0.75rem; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.12); margin-bottom: 1rem; }
+        .feature-badge { display: inline-flex; gap: 0.45rem; align-items: center; border-radius: 14px; background: rgba(255,255,255,0.04); padding: 0.55rem 0.8rem; border: 1px solid rgba(148,163,184,0.12); color: #cbd5e1; margin-bottom: 1rem; }
+        .feature-card { background: rgba(14, 28, 59, 0.95); border: 1px solid rgba(56, 84, 126, 0.18); border-radius: 24px; padding: 1.4rem; }
+        .fade-in-up { animation: fadeInUp 0.85s ease both; }
+        .slide-in-left { animation: slideInLeft 0.75s ease both; }
+        .slide-in-right { animation: slideInRight 0.75s ease both; }
+        .stButton>button:focus { outline: none; box-shadow: 0 0 0 4px rgba(23, 114, 209, 0.14); }
+        .glow-button button { box-shadow: 0 0 0 0 rgba(22, 98, 191, 0.25); transition: box-shadow 0.35s ease, transform 0.18s ease; }
+        .glow-button button:hover { box-shadow: 0 0 24px rgba(22, 98, 191, 0.20); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
     </style>
     """,
     unsafe_allow_html=True,
@@ -166,11 +120,32 @@ with st.container():
             procurement visibility in one dark-mode workspace.
             """
         )
+        st.markdown("<div class='feature-badge'>Data-driven predictions • Faster approvals • Clean dark UX</div>", unsafe_allow_html=True)
     with bt2:
-        st.markdown("<div class='tone-chip'>Native dark mode enabled</div>", unsafe_allow_html=True)
         st.metric("Model readiness", "Operational", delta="+8%")
         st.metric("Prediction latency", "<1s")
         st.metric("Confidence score", "92%", delta="+4%")
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown("<div class='grid-card fade-in-up'>", unsafe_allow_html=True)
+with st.container():
+    c1, c2, c3 = st.columns(3, gap='large')
+    with c1:
+        st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
+        st.subheader("Predict with confidence")
+        st.write("Use invoice data to forecast freight and review approval risk in one place.")
+        st.markdown("</div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
+        st.subheader("Fast decision support")
+        st.write("Highlight invoices that need manual review before approvals are finalized.")
+        st.markdown("</div>", unsafe_allow_html=True)
+    with c3:
+        st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
+        st.subheader("Dark UI focus")
+        st.write("Keep the dashboard sleek and readable with a premium night-mode experience.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
 st.markdown("---")
@@ -213,6 +188,7 @@ if selected_model == "Freight Cost Prediction":
         "Predict freight expense from invoice quantity and invoice value, then use the estimate to guide vendor negotiation and logistics planning."
     )
 
+    st.markdown("<div class='section-card fade-in-up'>", unsafe_allow_html=True)
     with st.form("freight_form"):
         quad, quad_info = st.columns([2, 1])
 
@@ -248,6 +224,7 @@ if selected_model == "Freight Cost Prediction":
             st.info("Tip: Higher lead time can increase freight expense.")
 
         submit_freight = st.form_submit_button("Predict Freight Cost")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     if submit_freight:
         with st.spinner("Estimating freight cost..."):
@@ -286,6 +263,7 @@ else:
         "Identify invoices that require manual review to reduce approval risk and improve process efficiency."
     )
 
+    st.markdown("<div class='section-card fade-in-up'>", unsafe_allow_html=True)
     with st.form("invoice_flag_form"):
         col1, col2, col3 = st.columns(3)
 
@@ -338,6 +316,7 @@ else:
             )
 
         submit_flag = st.form_submit_button("Predict Invoice Risk")
+    st.markdown("</div>", unsafe_allow_html=True)
 
     if submit_flag:
         with st.spinner("Analyzing invoice risk..."):
