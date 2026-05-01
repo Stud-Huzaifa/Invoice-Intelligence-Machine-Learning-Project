@@ -115,12 +115,12 @@ with st.container():
         st.title("📦 Smart Freight & Invoice Risk Prediction")
         st.markdown(
             """
-            A modern analytics portal for vendor invoices, freight cost forecasting, and
-            automated approval guidance. Keep approvals fast, reduce risk, and improve
-            procurement visibility in one dark-mode workspace.
+            A modern analytics console for vendor invoices, freight forecasting, and
+            approval risk management. Stay confident with faster approvals, sharper
+            cost insights, and a clean dark-mode review experience.
             """
         )
-        st.markdown("<div class='feature-badge'>Data-driven predictions • Faster approvals • Clean dark UX</div>", unsafe_allow_html=True)
+        st.markdown("<div class='feature-badge'>Data-driven predictions • Fast decision support • Professional dark UX</div>", unsafe_allow_html=True)
     with bt2:
         st.metric("Model readiness", "Operational", delta="+8%")
         st.metric("Prediction latency", "<1s")
@@ -134,17 +134,17 @@ with st.container():
     with c1:
         st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
         st.subheader("Predict with confidence")
-        st.write("Use invoice data to forecast freight and review approval risk in one place.")
+        st.write("Forecast freight spend and approval risk from invoice-level detail.")
         st.markdown("</div>", unsafe_allow_html=True)
     with c2:
         st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
         st.subheader("Fast decision support")
-        st.write("Highlight invoices that need manual review before approvals are finalized.")
+        st.write("Surface invoices that need a second review before the approval workflow continues.")
         st.markdown("</div>", unsafe_allow_html=True)
     with c3:
         st.markdown("<div class='feature-card'>", unsafe_allow_html=True)
-        st.subheader("Dark UI focus")
-        st.write("Keep the dashboard sleek and readable with a premium night-mode experience.")
+        st.subheader("Premium dark layout")
+        st.write("A focused night-mode workspace for clean analysis and easy stakeholder review.")
         st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("</div>", unsafe_allow_html=True)
@@ -158,9 +158,9 @@ selected_model = st.sidebar.radio(
 
 st.sidebar.markdown("### Quick start")
 st.sidebar.write(
-    "• Select a workflow."
+    "• Choose a workflow."
     "\n• Enter invoice and freight details."
-    "\n• Click Predict and review the results."
+    "\n• Submit and review the recommendation."
 )
 
 with st.sidebar.expander("How to use this portal"):
@@ -177,7 +177,7 @@ st.sidebar.markdown(
     "**Why this dashboard matters:**\n"
     "- Faster freight negotiation decisions.\n"
     "- Proactive invoice risk screening.\n"
-    "- One unified approval view."
+    "- Single workflow for cost and approval insight."
 )
 
 st.sidebar.caption("Dark theme is applied both natively and with custom styling for a premium UI.")
@@ -185,10 +185,11 @@ st.sidebar.caption("Dark theme is applied both natively and with custom styling 
 if selected_model == "Freight Cost Prediction":
     st.header("Freight Cost Prediction")
     st.markdown(
-        "Predict freight expense from invoice quantity and invoice value, then use the estimate to guide vendor negotiation and logistics planning."
+        "Forecast freight spend using invoice quantity and invoice value, then use the result to support vendor conversations and logistics decisions."
     )
 
     st.markdown("<div class='section-card fade-in-up'>", unsafe_allow_html=True)
+    st.markdown("<h3 class='section-title'>Invoice details</h3>", unsafe_allow_html=True)
     with st.form("freight_form"):
         quad, quad_info = st.columns([2, 1])
 
@@ -260,10 +261,11 @@ if selected_model == "Freight Cost Prediction":
 else:
     st.header("Invoice Manual Approval Prediction")
     st.markdown(
-        "Identify invoices that require manual review to reduce approval risk and improve process efficiency."
+        "Identify invoices that require manual review so you can reduce approval risk and speed up low-risk processing."
     )
 
     st.markdown("<div class='section-card fade-in-up'>", unsafe_allow_html=True)
+    st.markdown("<h3 class='section-title'>Invoice details</h3>", unsafe_allow_html=True)
     with st.form("invoice_flag_form"):
         col1, col2, col3 = st.columns(3)
 
