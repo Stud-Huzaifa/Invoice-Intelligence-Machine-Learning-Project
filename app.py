@@ -15,11 +15,11 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        .reportview-container .main {
-            background: linear-gradient(180deg, #f3f8ff 0%, #edf4fb 35%, #fdfcff 100%);
+        body {
+            background: linear-gradient(180deg, #eef5fc 0%, #fdfcff 55%, #ffffff 100%);
         }
-        .css-1d391kg {
-            padding-top: 1rem;
+        .stApp {
+            background: transparent;
         }
         .stButton>button {
             background-color: #0b4f7e;
@@ -27,6 +27,7 @@ st.markdown(
             border-radius: 10px;
             padding: 0.65rem 1rem;
             font-weight: 600;
+            transition: background-color 0.25s ease;
         }
         .stButton>button:hover {
             background-color: #093959;
@@ -45,8 +46,16 @@ st.markdown(
         .metric-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 18px;
-            padding: 1.15rem;
-            box-shadow: 0 8px 30px rgba(15, 70, 120, 0.08);
+            padding: 1.25rem;
+            box-shadow: 0 12px 30px rgba(15, 70, 120, 0.08);
+            border: 1px solid rgba(15, 70, 120, 0.08);
+        }
+        .section-card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 1.25rem;
+            border: 1px solid rgba(15, 70, 120, 0.06);
+            box-shadow: 0 10px 28px rgba(15, 70, 120, 0.05);
         }
         .section-title {
             margin-bottom: 0.25rem;
@@ -171,8 +180,6 @@ if selected_model == "Freight Cost Prediction":
             st.write("• Verify logistics costs before approval.")
             st.markdown("</div>", unsafe_allow_html=True)
 
-        st.balloons()
-
 else:
     st.header("Invoice Manual Approval Prediction")
     st.markdown(
@@ -277,8 +284,6 @@ else:
             st.write("• Check freight for unusual spikes.")
             st.write("• Validate delivery delay status.")
             st.markdown("</div>", unsafe_allow_html=True)
-
-        st.balloons()
 
 st.markdown("---")
 
