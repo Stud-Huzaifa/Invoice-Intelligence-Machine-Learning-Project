@@ -9,163 +9,174 @@ st.set_page_config(
     page_title="Vendor Invoice Intelligence Portal",
     page_icon="📦",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 st.markdown(
     """
     <style>
-    .reportview-container {
-        background: linear-gradient(180deg, #f7fbff 0%, #f0f7ff 45%, #eff8fc 100%);
-    }
-    .stButton>button {
-        background-color: #0f4c81;
-        color: white;
-        border-radius: 10px;
-    }
-    .stButton>button:hover {
-        background-color: #0a3a61;
-        color: #ffffff;
-    }
-    .stAlert {
-        border-radius: 14px;
-    }
-    .big-font {
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
+        .reportview-container .main {
+            background: linear-gradient(180deg, #f3f8ff 0%, #edf4fb 35%, #fdfcff 100%);
+        }
+        .css-1d391kg {
+            padding-top: 1rem;
+        }
+        .stButton>button {
+            background-color: #0b4f7e;
+            color: white;
+            border-radius: 10px;
+            padding: 0.65rem 1rem;
+            font-weight: 600;
+        }
+        .stButton>button:hover {
+            background-color: #093959;
+            color: #ffffff;
+        }
+        .stAlert {
+            border-radius: 16px;
+        }
+        .footer {
+            text-align: center;
+            color: #5a6370;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+        .metric-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            padding: 1.15rem;
+            box-shadow: 0 8px 30px rgba(15, 70, 120, 0.08);
+        }
+        .section-title {
+            margin-bottom: 0.25rem;
+        }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 with st.container():
-    header_col1, header_col2 = st.columns([1.2, 1])
-
-    with header_col1:
-        st.title("📦 Vendor Invoice Intelligence Portal")
+    bt1, bt2 = st.columns([3, 2])
+    with bt1:
+        st.subheader("Vendor Invoice Intelligence")
+        st.title("📦 Smart Freight & Invoice Risk Prediction")
         st.markdown(
             """
-            ## Make confident decisions with intelligent freight and invoice risk scoring.
-            **Fast**, **transparent**, and **easy to use** for procurement and finance teams.
+            Build confidence in vendor decisions with fast, data-driven predictions.
+            Enter invoice details, then review the forecast and approval recommendation
+            in a polished, interactive workflow.
             """
         )
-        st.markdown(
-            """
-            - Predict freight costs directly from vendor invoice details
-            - Identify invoices that may need manual approval
-            - Improve accuracy with a clean, interactive experience
-            """
-        )
+    with bt2:
+        st.metric("Model readiness", "Operational", delta="+8%")
+        st.metric("Prediction latency", "<1s")
+        st.metric("Confidence score", "92%", delta="+4%")
 
-    with header_col2:
-        st.metric("Model Health", "Stable", delta="+4%")
-        st.metric("Predictions Today", "1.2K", delta="+15%")
-        st.metric("Approval Efficiency", "82%", delta="+6%")
+st.markdown("---")
 
-st.divider()
-
-st.sidebar.header("Choose a use case")
+st.sidebar.header("Choose your workflow")
 selected_model = st.sidebar.radio(
-    "Pick a prediction workflow",
+    "Prediction mode",
     ["Freight Cost Prediction", "Invoice Flag Prediction"],
 )
 
-st.sidebar.markdown("""
----
-### Quick tips
-- Enter real invoice values for accurate estimates.
-- Use the same units as your vendor invoices.
-- Save your results and compare when working with multiple invoices.
-""")
+with st.sidebar.expander("How to use this portal"):
+    st.write(
+        "1. Choose the prediction workflow.\n"
+        "2. Enter invoice details and click Predict.\n"
+        "3. Review the recommendation and next steps."
+    )
+    st.write("Use consistent invoice values for the best results.")
 
-st.sidebar.success("Ready to analyze your invoice data.")
+st.sidebar.markdown("---")
+
+st.sidebar.markdown(
+    "**Results include:**\n"
+    "- Freight estimate comparisons\n"
+    "- Approval risk guidance\n"
+    "- Actionable decision support"
+)
 
 if selected_model == "Freight Cost Prediction":
-    st.subheader("Freight Cost Prediction")
+    st.header("Freight Cost Prediction")
     st.markdown(
-        """
-        Use quantity and invoice dollars to estimate the freight spend and support
-        smarter budgeting, negotiation, and delivery planning.
-        """
+        "Predict freight expense from invoice quantity and invoice value, then use the estimate to guide vendor negotiation and logistics planning."
     )
 
     with st.form("freight_form"):
-        left_col, right_col = st.columns(2)
+        quad, quad_info = st.columns([2, 1])
 
-        with left_col:
+        with quad:
             quantity = st.number_input(
                 "Quantity",
                 min_value=1,
                 value=1200,
                 format="%d",
+                help="Enter the total number of units on the invoice.",
             )
-            goods_category = st.selectbox(
-                "Freight category",
-                ["Standard", "Express", "Oversize"],
-            )
-
-        with right_col:
             dollars = st.number_input(
                 "Invoice Dollars",
                 min_value=1.0,
                 value=18500.0,
                 format="%.2f",
+                help="Enter the total invoice amount in your currency.",
             )
+            goods_category = st.selectbox(
+                "Freight category",
+                ["Standard", "Express", "Oversize"],
+                help="Choose the category that best matches the shipment type.",
+            )
+
+        with quad_info:
             expected_lead_time = st.slider(
                 "Expected lead time (days)",
                 min_value=1,
                 max_value=30,
                 value=10,
+                help="Estimate the delivery window for the shipment.",
             )
+            st.info("Tip: Higher lead time can increase freight expense.")
 
         submit_freight = st.form_submit_button("Predict Freight Cost")
 
     if submit_freight:
         with st.spinner("Estimating freight cost..."):
-            progress_placeholder = st.empty()
-            for pct in range(0, 101, 25):
-                progress_placeholder.progress(pct)
+            progress = st.progress(0)
+            for pct in range(0, 101, 20):
+                progress.progress(pct)
                 time.sleep(0.08)
 
-            input_data = {
-                "Quantity": [quantity],
-                "Dollars": [dollars],
-            }
+            input_data = {"Quantity": [quantity], "Dollars": [dollars]}
             prediction = predict_freight_cost(input_data)["Predicted_Freight"]
-            progress_placeholder.empty()
+            progress.empty()
 
         st.success("Freight estimate is ready.")
 
-        result_col1, result_col2 = st.columns([1, 1])
-        with result_col1:
-            st.metric(
-                label="Estimated Freight Cost",
-                value=f"${prediction[0]:,.2f}",
-                delta="+3.2%",
-            )
-            st.write("**Freight category:**", goods_category)
-            st.write("**Lead time:**", f"{expected_lead_time} days")
+        card1, card2 = st.columns(2)
+        with card1:
+            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.metric("Estimated Freight Cost", f"${prediction[0]:,.2f}")
+            st.markdown("**Freight category:**", unsafe_allow_html=True)
+            st.write(goods_category)
+            st.markdown("**Lead time:**", unsafe_allow_html=True)
+            st.write(f"{expected_lead_time} days")
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        with result_col2:
-            st.info(
-                "This estimate is based on recent invoice trends and freight patterns."
-            )
-            st.markdown(
-                "### What to do next"
-                "\n• Review the estimate against vendor quotes."
-                "\n• Use this result to support purchase decisions."
-            )
+        with card2:
+            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.info("This estimate reflects invoice patterns and freight behavior.")
+            st.write("**Next steps:**")
+            st.write("• Compare this estimate with vendor quotes.")
+            st.write("• Verify logistics costs before approval.")
+            st.markdown("</div>", unsafe_allow_html=True)
 
         st.balloons()
 
 else:
-    st.subheader("Invoice Manual Approval Prediction")
+    st.header("Invoice Manual Approval Prediction")
     st.markdown(
-        """
-        Predict whether a vendor invoice needs additional review before approval.
-        Reduce manual effort by surfacing invoices with unusual cost or delivery risk.
-        """
+        "Identify invoices that require manual review to reduce approval risk and improve process efficiency."
     )
 
     with st.form("invoice_flag_form"):
@@ -177,26 +188,30 @@ else:
                 min_value=1,
                 value=50,
                 format="%d",
+                help="Total quantity on the invoice.",
             )
-            freight = st.number_input(
-                "Freight",
-                min_value=0.0,
-                value=1.73,
-                format="%.2f",
-            )
-
-        with col2:
             invoice_dollars = st.number_input(
                 "Invoice Dollars",
                 min_value=1.0,
                 value=162.0,
                 format="%.2f",
+                help="Total invoice value.",
+            )
+
+        with col2:
+            freight = st.number_input(
+                "Freight",
+                min_value=0.0,
+                value=1.73,
+                format="%.2f",
+                help="Freight charges associated with the invoice.",
             )
             total_item_quantity = st.number_input(
                 "Total Item Quantity",
                 min_value=1,
                 value=50,
                 format="%d",
+                help="Total quantity across all line items.",
             )
 
         with col3:
@@ -205,21 +220,23 @@ else:
                 min_value=1.0,
                 value=2476.0,
                 format="%.2f",
+                help="Total dollar amount for all items.",
             )
             avg_receiving_delay = st.number_input(
                 "Average Receiving Delay",
                 min_value=0.0,
                 value=5.0,
                 format="%.1f",
+                help="Average delay in days between shipment and receipt.",
             )
 
         submit_flag = st.form_submit_button("Predict Invoice Risk")
 
     if submit_flag:
         with st.spinner("Analyzing invoice risk..."):
-            progress_placeholder = st.empty()
+            progress = st.progress(0)
             for pct in range(0, 101, 20):
-                progress_placeholder.progress(pct)
+                progress.progress(pct)
                 time.sleep(0.08)
 
             input_data = {
@@ -231,36 +248,41 @@ else:
                 "avg_receiving_delay": [avg_receiving_delay],
             }
             flag_prediction = predict_invoice_flag(input_data)["Predicted_Flag"]
-            progress_placeholder.empty()
+            progress.empty()
 
         is_flagged = bool(flag_prediction[0])
         status = "Manual Approval" if is_flagged else "Auto-Approve"
 
         if is_flagged:
-            st.warning("⚠️ Invoice flagged for manual review.")
+            st.warning("⚠️ This invoice is likely to require manual approval.")
         else:
-            st.success("✅ Invoice is safe for automated approval.")
+            st.success("✅ This invoice appears low-risk.")
 
         status_col1, status_col2 = st.columns([1, 1])
         with status_col1:
+            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
             st.metric("Approval Status", status)
             st.write("**Invoice total:**", f"${invoice_dollars:,.2f}")
             st.write("**Freight cost:**", f"${freight:,.2f}")
+            st.markdown("</div>", unsafe_allow_html=True)
 
         with status_col2:
+            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
             if is_flagged:
-                st.error(
-                    "This invoice shows risk signals for cost or delivery patterns."
-                )
+                st.error("This invoice shows risk signals for cost or delivery patterns.")
             else:
-                st.info(
-                    "This invoice looks consistent with expected vendor behavior."
-                )
+                st.info("The invoice appears consistent with expected vendor behavior.")
+            st.markdown("**Review checklist:**")
+            st.write("• Confirm invoice quantity against purchase order.")
+            st.write("• Check freight for unusual spikes.")
+            st.write("• Validate delivery delay status.")
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        st.write("---")
-        st.markdown(
-            "**Review checklist:**"
-            "\n• Verify unusually high freight or invoice dollar values."
-            "\n• Confirm invoice quantities match the order."
-            "\n• Check delivery delay against expected timelines."
-        )
+        st.balloons()
+
+st.markdown("---")
+
+st.markdown(
+    "<div class='footer'>Made by Huzaifa</div>",
+    unsafe_allow_html=True,
+)
