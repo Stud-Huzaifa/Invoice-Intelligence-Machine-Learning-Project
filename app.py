@@ -15,9 +15,16 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-        body, .stApp, .main, .block-container, .css-18e3th9, .css-1lcbmhc, .css-1outpf7, div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
-            background: #020812 !important;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        :root {
+            color-scheme: dark;
+            font-family: 'Inter', sans-serif;
+        }
+        body, .stApp, .main, .block-container, .css-18e3th9, .css-1lcbmhc, .css-1outpf7,
+        div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
+            background: radial-gradient(circle at top, rgba(10, 28, 66, 0.92), #020812 42%) !important;
             color: #e2e8f0 !important;
+            overflow-x: hidden;
         }
         .element-container, .streamlit-expanderHeader, .stMarkdown, .stText, .css-1kyxreq {
             color: #e2e8f0 !important;
@@ -31,50 +38,56 @@ st.markdown(
             padding-right: 2rem !important;
         }
         [data-testid="stSidebar"] {
-            background: #071a33 !important;
+            background: linear-gradient(180deg, #071a33 0%, #061825 100%) !important;
             color: #e2e8f0 !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
         [data-testid="stSidebar"] .css-1d391kg, [data-testid="stSidebar"] .css-1lcbmhc {
-            background: #071a33 !important;
+            background: transparent !important;
+        }
+        .stSidebar .css-1v0mbdj, .stSidebar .css-10trblm {
+            color: #f8fafc !important;
         }
         .stButton>button {
-            background-color: #13418d;
+            background-color: #1f4f92;
             color: white;
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            font-weight: 600;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            border-radius: 14px;
+            padding: 0.9rem 1.1rem;
+            font-weight: 700;
+            transition: background-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
         }
         .stButton>button:hover {
-            background-color: #0f326c;
+            background-color: #1662bf;
             transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(22, 98, 191, 0.24);
         }
         .stTextInput>div>input, .stNumberInput>div>input, .stSelectbox>div>div>div>div {
-            border-radius: 12px;
-            background: #0d1f3a !important;
+            border-radius: 14px;
+            background: #071b38 !important;
             color: #e2e8f0 !important;
+            border: 1px solid rgba(148, 163, 184, 0.18) !important;
         }
         .stSlider>div>div {
             border-radius: 12px;
         }
         .stAlert, .stInfo, .stSuccess, .stWarning, .stError {
-            border-radius: 16px;
+            border-radius: 18px;
         }
         .metric-card, .section-card, .hero-card, .grid-card, .result-card, .form-card {
-            background: rgba(8, 22, 44, 0.95);
+            background: rgba(9, 18, 37, 0.95);
             border: 1px solid rgba(56, 84, 126, 0.18);
             border-radius: 24px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.40);
             padding: 1.6rem;
         }
         .hero-card {
             padding: 2rem 2rem 1.5rem 2rem;
         }
         .section-card {
-            padding: 1.6rem;
+            padding: 1.7rem;
         }
         .section-title {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.4rem;
             color: #e2e8f0;
             font-weight: 700;
         }
@@ -84,31 +97,77 @@ st.markdown(
             padding: 1.5rem 0 0.5rem;
             font-size: 0.95rem;
         }
-        .stSidebar .css-1v0mbdj, .stSidebar .css-10trblm {
-            color: #f8fafc !important;
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(20, 57, 103, 0.95);
+            color: #cbd5e1;
+            padding: 0.55rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
         }
-        .stCheckbox>div, .stRadio>div {
-            color: #e2e8f0 !important;
+        .tone-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            margin-bottom: 1rem;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.85s ease both;
+        }
+        .slide-in-left {
+            animation: slideInLeft 0.75s ease both;
+        }
+        .slide-in-right {
+            animation: slideInRight 0.75s ease both;
+        }
+        .glow-button button {
+            box-shadow: 0 0 0 0 rgba(22, 98, 191, 0.25);
+            transition: box-shadow 0.35s ease, transform 0.18s ease;
+        }
+        .glow-button button:hover {
+            box-shadow: 0 0 24px rgba(22, 98, 191, 0.20);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-24px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(24px); }
+            to { opacity: 1; transform: translateX(0); }
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-st.markdown("<div class='section-card'>", unsafe_allow_html=True)
+st.markdown("<div class='hero-card fade-in-up'>", unsafe_allow_html=True)
 with st.container():
-    bt1, bt2 = st.columns([3, 2])
+    bt1, bt2 = st.columns([3, 1.4])
     with bt1:
-        st.subheader("Vendor Invoice Intelligence")
+        st.markdown("<div class='hero-pill'>Live forecast + risk intelligence</div>", unsafe_allow_html=True)
         st.title("📦 Smart Freight & Invoice Risk Prediction")
         st.markdown(
             """
-            Build confidence in vendor decisions with fast, data-driven predictions.
-            Enter invoice details, then review the forecast and approval recommendation
-            in a polished, interactive workflow.
+            A modern analytics portal for vendor invoices, freight cost forecasting, and
+            automated approval guidance. Keep approvals fast, reduce risk, and improve
+            procurement visibility in one dark-mode workspace.
             """
         )
     with bt2:
+        st.markdown("<div class='tone-chip'>Native dark mode enabled</div>", unsafe_allow_html=True)
         st.metric("Model readiness", "Operational", delta="+8%")
         st.metric("Prediction latency", "<1s")
         st.metric("Confidence score", "92%", delta="+4%")
@@ -122,6 +181,13 @@ selected_model = st.sidebar.radio(
     ["Freight Cost Prediction", "Invoice Flag Prediction"],
 )
 
+st.sidebar.markdown("### Quick start")
+st.sidebar.write(
+    "• Select a workflow."
+    "\n• Enter invoice and freight details."
+    "\n• Click Predict and review the results."
+)
+
 with st.sidebar.expander("How to use this portal"):
     st.write(
         "1. Choose the prediction workflow.\n"
@@ -133,11 +199,13 @@ with st.sidebar.expander("How to use this portal"):
 st.sidebar.markdown("---")
 
 st.sidebar.markdown(
-    "**Results include:**\n"
-    "- Freight estimate comparisons\n"
-    "- Approval risk guidance\n"
-    "- Actionable decision support"
+    "**Why this dashboard matters:**\n"
+    "- Faster freight negotiation decisions.\n"
+    "- Proactive invoice risk screening.\n"
+    "- One unified approval view."
 )
+
+st.sidebar.caption("Dark theme is applied both natively and with custom styling for a premium UI.")
 
 if selected_model == "Freight Cost Prediction":
     st.header("Freight Cost Prediction")
@@ -196,7 +264,7 @@ if selected_model == "Freight Cost Prediction":
 
         card1, card2 = st.columns(2)
         with card1:
-            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.markdown("<div class='metric-card slide-in-left'>", unsafe_allow_html=True)
             st.metric("Estimated Freight Cost", f"${prediction[0]:,.2f}")
             st.markdown("**Freight category:**", unsafe_allow_html=True)
             st.write(goods_category)
@@ -205,7 +273,7 @@ if selected_model == "Freight Cost Prediction":
             st.markdown("</div>", unsafe_allow_html=True)
 
         with card2:
-            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.markdown("<div class='metric-card slide-in-right'>", unsafe_allow_html=True)
             st.info("This estimate reflects invoice patterns and freight behavior.")
             st.write("**Next steps:**")
             st.write("• Compare this estimate with vendor quotes.")
@@ -299,19 +367,19 @@ else:
 
         status_col1, status_col2 = st.columns([1, 1])
         with status_col1:
-            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.markdown("<div class='metric-card slide-in-left'>", unsafe_allow_html=True)
             st.metric("Approval Status", status)
             st.write("**Invoice total:**", f"${invoice_dollars:,.2f}")
             st.write("**Freight cost:**", f"${freight:,.2f}")
             st.markdown("</div>", unsafe_allow_html=True)
 
         with status_col2:
-            st.markdown("<div class='metric-card'>", unsafe_allow_html=True)
+            st.markdown("<div class='metric-card slide-in-right'>", unsafe_allow_html=True)
             if is_flagged:
                 st.error("This invoice shows risk signals for cost or delivery patterns.")
             else:
                 st.info("The invoice appears consistent with expected vendor behavior.")
-            st.markdown("**Review checklist:**")
+            st.markdown("**Review checklist:**", unsafe_allow_html=True)
             st.write("• Confirm invoice quantity against purchase order.")
             st.write("• Check freight for unusual spikes.")
             st.write("• Validate delivery delay status.")
